@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema  xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+			xmlns:fl="http://www.epam.tc.homework1/filter" 
+			xmlns:ls="http://www.epam.tc.homework1/listener"
+			xmlns:sr="http://www.epam.tc.homework1/servlet"
+			xmlns:rr="http://www.epam.tc.homework1/error"
+			elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:element name="web-app">
+    <xs:complexType>
+      <xs:all maxOccurs="unbounded" minOccurs="0">
+        <xs:element type="xs:string" name="display-name"/>
+        <xs:element name="welcome-file-list">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:string" name="welcome-file" maxOccurs="unbounded" minOccurs="0"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <fl:element name="filter">
+          <fl:complexType>
+            <fl:sequence>
+              <fl:element type="fl:string" name="filter-name"/>
+              <fl:element type="fl:string" name="filter-class"/>
+              <fl:element name="init-param">
+                <fl:complexType>
+                  <fl:sequence>
+                    <fl:element type="fl:string" name="param-name"/>
+                    <fl:element type="fl:string" name="param-value"/>
+                  </fl:sequence>
+                </fl:complexType>
+              </fl:element>
+            </fl:sequence>
+          </fl:complexType>
+        </fl:element>
+        <fl:element name="filter-mapping" maxOccurs="unbounded" minOccurs="0">
+          <fl:complexType>
+            <fl:sequence>
+              <fl:element type="fl:string" name="filter-name"/>
+              <fl:element type="fl:string" name="url-pattern"/>
+              <fl:element type="fl:string" name="dispatcher"/>
+            </fl:sequence>
+          </fl:complexType>
+        </fl:element>
+        <ls:element name="listener" maxOccurs="unbounded" minOccurs="0">
+          <ls:complexType>
+            <ls:sequence>
+              <ls:element type="ls:string" name="listener-class"/>
+            </ls:sequence>
+          </ls:complexType>
+        </ls:element>
+        <sr:element name="servlet" maxOccurs="unbounded" minOccurs="0">
+          <sr:complexType>
+            <sr:sequence>
+              <sr:element type="sr:string" name="servlet-name"/>
+              <sr:element type="sr:string" name="servlet-class"/>
+			  <fl:element name="init-param">
+                <fl:complexType>
+                  <fl:sequence>
+                    <fl:element type="fl:string" name="param-name"/>
+                    <fl:element type="fl:string" name="param-value"/>
+                  </fl:sequence>
+                </fl:complexType>
+              </fl:element>
+            </sr:sequence>
+          </sr:complexType>
+        </sr:element>
+        <sr:element name="servlet-mapping" maxOccurs="unbounded" minOccurs="0">
+          <sr:complexType>
+            <sr:sequence>
+              <sr:element type="sr:string" name="servlet-name"/>
+              <sr:element type="sr:string" name="url-pattern"/>
+            </sr:sequence>
+          </sr:complexType>
+        </sr:element>
+        <rr:element name="error-page">
+          <rr:complexType>
+            <rr:sequence>
+              <rr:element type="rr:string" name="exception-type" minOccurs="0"/>
+              <rr:element type="rr:short" name="error-code" minOccurs="0"/>
+              <rr:element type="rr:string" name="location"/>
+            </rr:sequence>
+          </rr:complexType>
+        </rr:element>
+      </xs:all>
+      <xs:attribute type="xs:string" name="id"/>
+      <xs:attribute type="xs:string" name="version"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
